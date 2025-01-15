@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "sila",
-    "slug": "sila",
+    "slug": "sila-app-dev",
+    "description": "This is a workout tracking mobile application.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
