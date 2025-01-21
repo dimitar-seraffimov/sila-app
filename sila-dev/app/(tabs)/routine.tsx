@@ -3,7 +3,6 @@ import { Pressable, Text } from 'react-native';
 import { Link } from 'expo-router';
 
 import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -44,7 +43,7 @@ export default function TabThreeScreen() {
 
       <Link href="/exercise_list" asChild>
         <Pressable>
-          <Text style={{ fontSize: 20 }}>Exercise List</Text>
+          <ThemedText style={{ fontSize: 20 }}>Exercise List</ThemedText>
         </Pressable>
       </Link>
     </ParallaxScrollView>
