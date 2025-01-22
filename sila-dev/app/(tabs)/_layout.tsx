@@ -15,7 +15,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
+        headerShown: true,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
@@ -38,6 +38,7 @@ export default function TabLayout() {
         options={{
           title: 'Lift',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="flame.fill" color={color} />,
+          headerTitle: 'Start Lifting',
         }}
       />
       <Tabs.Screen
