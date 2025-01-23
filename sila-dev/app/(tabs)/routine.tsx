@@ -24,8 +24,6 @@ export default function RoutineScreen() {
     routine.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const clearSearch = () => setSearchQuery('');
-
   return (
     <View
       style={[
@@ -46,16 +44,6 @@ export default function RoutineScreen() {
         <StyledButton title="New Routine" onPress={() => console.log('New Routine')} />
         <StyledButton title="Explore" onPress={() => console.log('Explore')} />
       </View>
-      
-      <View style={styles.filterButtons}>
-        <StyledButton title="Exercise List" onPress={() => console.log('New Routine')} />
-      </View>
-
-      <Link href="/exercise_list" asChild>
-        <Pressable>
-          <ThemedText style={{ fontSize: 20 }}>Exercise List</ThemedText>
-        </Pressable>
-      </Link>
 
       <ThemedText style={styles.myRoutines}>My Routines (4)</ThemedText>
       <CustomScrollView items={filteredRoutines.map(routine => ({
