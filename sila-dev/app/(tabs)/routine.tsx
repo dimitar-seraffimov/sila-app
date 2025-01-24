@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 
 import { SearchContainer } from '@/components/SearchContainer';
-import { StyledButton } from '@/components/StyledButton';
 import { CustomScrollView } from '@/components/CustomScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Colors } from '@/constants/Colors';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import StyledButton from '@/components/StyledButton';
 
 export default function RoutineScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const theme = useColorScheme() ?? 'light';
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(0);
+  const [sets, setSets] = useState(0);
 
   const demoRoutines = [
     { id: '1', name: 'tuesdays', description: 'Hang Snatch, Hang Clean, Squat (Barbell), Pull Up (Weighted), Push Press, Bicep Curl (Dumbbell)' },
@@ -24,6 +27,14 @@ export default function RoutineScreen() {
     routine.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDuration((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <View
       style={[
@@ -33,10 +44,12 @@ export default function RoutineScreen() {
     >
       <View style={styles.quickStart}>
         <ThemedText type="subtitle">Quick Start</ThemedText>
-        <TouchableOpacity style={styles.quickStartButton}>
-          <IconSymbol name="plus" size={20} color="white" />
-          <ThemedText style={styles.quickStartText}>Start Empty Workout</ThemedText>
-        </TouchableOpacity>
+        <Link href="/in_workout/workout" asChild>
+          <TouchableOpacity style={styles.quickStartButton}>
+            <IconSymbol name="plus" size={20} color="white" />
+            <ThemedText style={styles.quickStartText}>Start Empty Workout</ThemedText>
+          </TouchableOpacity>
+        </Link>
       </View>
 
       <ThemedText type="subtitle" style={styles.sectionTitle}>Routines</ThemedText>
@@ -51,6 +64,12 @@ export default function RoutineScreen() {
         name: routine.name,
         muscle: routine.description,
       }))} />
+
+      <View style={styles.stats}>
+        <ThemedText>Duration: {duration}s</ThemedText>
+        <ThemedText>Volume: {volume} kg</ThemedText>
+        <ThemedText>Sets: {sets}</ThemedText>
+      </View>
     </View>
   );
 }
@@ -90,5 +109,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  stats: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 20,
   },
 });

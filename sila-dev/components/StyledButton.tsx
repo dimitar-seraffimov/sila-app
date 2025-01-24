@@ -9,11 +9,12 @@ type StyledButtonProps = {
   onPress: () => void;
 };
 
-export function StyledButton({ title, onPress }: StyledButtonProps) {
+const StyledButton = React.forwardRef<typeof TouchableOpacity, StyledButtonProps>(({ title, onPress }, ref) => {
   const theme = useColorScheme() ?? 'light';
 
   return (
     <TouchableOpacity
+      ref={ref}
       style={[
         styles.button,
         {
@@ -26,7 +27,7 @@ export function StyledButton({ title, onPress }: StyledButtonProps) {
       <ThemedText style={styles.buttonText}>{title}</ThemedText>
     </TouchableOpacity>
   );
-}
+});
 
 const styles = StyleSheet.create({
   button: {
@@ -35,9 +36,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     marginHorizontal: 10,
-    borderWidth:1,
+    borderWidth: 1,
   },
   buttonText: {
     fontSize: 14,
   },
-}); 
+});
+
+export default StyledButton; 

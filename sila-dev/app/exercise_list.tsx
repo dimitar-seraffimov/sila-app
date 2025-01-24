@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { SearchContainer } from '@/components/SearchContainer';
-import { StyledButton } from '@/components/StyledButton';
+import StyledButton from '@/components/StyledButton';
 import { CustomScrollView } from '@/components/CustomScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { useColorScheme } from '@/hooks/useColorScheme';
